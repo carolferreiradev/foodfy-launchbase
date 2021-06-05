@@ -1,0 +1,38 @@
+body{
+  position: relative;
+}
+.messages{
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  width: 25%;
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 2rem 0 0;
+  opacity: 1;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  animation: fadeAlertMessages 400ms 5s forwards ease-in-out;
+}
+.error{
+  background-color: rgb(163, 0, 0);
+  border-radius: 4px;
+  box-shadow:2px 2px 5px 5px rgba(248, 149, 149, 0.75);
+  border: 1px solid rgb(73, 4, 4);
+}
+.success{
+  background-color: rgb(19, 116, 0);
+  box-shadow:2px 2px 5px 5px rgba(151, 255, 130, 0.75);
+  border-radius: 4px;
+  border: 1px solid rgb(14, 54, 6);
+}
+
+@keyframes fadeAlertMessages{
+  to{
+    top: -100px;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,23 @@
+{% extends '../layout.njk'%}
+{% block conteudo %}
+  <div class="container">
+
+    <div class="titles-header">
+      <h3>Criando nova receita</h3>
+      <form action="/admin/recipes/create" method="POST" enctype="multipart/form-data">
+        <div class="buttons">
+          <button 
+              onclick="verificaValue('.inputIngrediente', 'populaIngredients');
+                       verificaValue('.inputPreparation', 'populaPreparation');" 
+              class="save" 
+              type="submit"
+            >
+              Salvar receita
+            </button>
+
+        </div>
+    </div>
+          {%include 'admin/recipes/fields.njk'%}
+      </form>
+  </div>
+{% endblock conteudo %}

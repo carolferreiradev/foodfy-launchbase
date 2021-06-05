@@ -1,0 +1,71 @@
+{% extends "./layout.njk" %}
+
+{% block conteudo %}
+  <div class="container">
+    <div class="gallery">
+
+      <div class="highlight">
+        {% if not files[0] %}
+          <img src="http://placehold.it/500x500?text=RECEITA SEM FOTO">
+        {% else %}
+          <img src="{{ files[0].src }}" alt="{{ files[0].name }}">
+        {% endif %}
+      </div>
+
+      <div class="gallery-preview">
+        {% for image in files %}
+          <img src="{{ image.src }}" alt="{{ image.name }}" {% if loop.index0 == 0 %} class="active" {% endif %} onclick="ImageGallery.setImage(event)">
+        {% endfor %}
+      </div>
+
+    <div class="titles-recipe">
+
+      <h1>{{ recipe[0].title }}</h1>
+      <p>por {{ recipe[0].chefs_name }}</p>
+
+    </div>
+
+    <div class="datas-recipe">
+
+      <div class="data-recipe">
+
+         <p>Ingredientes <input id="input-ingredient" type="button" value="ESCONDER" onclick="menuToggle('input-ingredient',value,'ingredients')" class="show"/></p>
+
+        <div class="content-recipe" id="ingredients">
+          <ul>
+            {% for ingre in recipe[0].ingredients %}
+              <li>{{ ingre }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="data-recipe">
+
+        <p>Modo de preparo<input id="input-preparation" type="button" value="MOSTRAR" onclick="menuToggle('input-preparation',value,'preparation')" class="show"/></p>
+
+        <div class="content-recipe hide-data" id="preparation">
+          <ul>
+            {% for prep in recipe[0].preparation %}
+              <li>{{ prep }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="data-recipe">
+
+        <p>Informações adicionais <input id="input-additional" type="button" value="ESCONDER" onclick="menuToggle('input-additional',value,'additional')" class="show"/></p>
+
+          <div class="additional-information" id="additional">
+            <p>{{ recipe[0].information }}</p>
+          </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

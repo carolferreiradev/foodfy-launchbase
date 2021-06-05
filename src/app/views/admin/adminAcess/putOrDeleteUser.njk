@@ -1,0 +1,48 @@
+{% extends '../layout.njk'%}
+
+{%block conteudo%}
+<div class="container">
+  <div class="titles-header">
+    <h3>Atualizar Usuário</h3>
+    <div class="buttons">
+        
+      <form class="form-delete" id="form-delete" action="/admin/users?_method=DELETE" method="POST">
+        <button 
+            type="submit"
+             {% if user.id === userLogged %}
+                    disabled
+                    title="Não é possível deletar sua própria conta."
+              {% endif %}
+            class="delete">Deletar</button>
+        <input type="hidden" name="id" value="{{user.id}}">
+      </form>
+
+      <form class="form-edit" action="/admin/users?_method=PUT" method="post">
+        <button type="submit">Salvar</button>
+        <input type="hidden" name="id" value="{{user.id}}">
+
+    </div>    
+  </div> 
+  <div class="form-field">
+    <div class="fields">
+        Nome
+      <input type="text" name="name" value="{{user.name}}" required="required">
+    </div>
+
+    <div class="fields">
+        Email
+      <input type="email" name="email" value="{{user.email}}" required="required">
+    </div>
+
+    <div class="fields checkbox">
+        <input type="checkbox" name="is_admin" {% if user.is_admin == true %} checked="checked" {% endif %}>
+        Administrador
+    </div>
+    
+      </form>
+</div>
+ 
+
+
+  {% include '../scripts.njk'%}
+  {%endblock%}

@@ -1,0 +1,20 @@
+<script src="/sweetalert.js"></script>
+<script>
+  function deleteData(event, formId) {
+    const formDelete = document.getElementById(formId)
+    event.preventDefault();
+    swal({
+      title: 'Confirmar a exclusão?',
+      text: 'Uma vez excluído, essa ação não poderá ser desfeita!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true
+    }).then((deletar) => {
+      if (deletar) {
+        formDelete.submit()
+      } else {
+        swal({text: 'Operação cancelada!', icon: 'success'})
+      }
+    })
+  }
+</script>

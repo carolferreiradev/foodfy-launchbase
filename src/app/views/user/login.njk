@@ -1,0 +1,20 @@
+{% extends './layout.njk'%}
+
+{%block conteudo%}
+    <h1>Iniciar Sessão</h1>
+
+    <form action="/admin/profile" method="POST" class="form login">
+      <div class="item-form">
+        <div>Email</div>
+        <input required  type="text" name="email" placeholder="Digite seu email" value="{{user.email}}">
+      </div>
+      <div class="item-form">
+        <div>Senha</div>
+        <input required  type="password" name="password" placeholder="Digite sua senha">
+      </div>
+      <div class="login-actions">
+        <a href="/forgot-password">Perdeu a senha?</a>
+      <button type="submit">Acessar</button>
+      </div>
+    </form>
+  {%endblock%}

@@ -1,0 +1,23 @@
+{% extends "./layout.njk" %}
+    {% block conteudo %}
+      <div class="container">
+        <div class="titles-header">
+          <h3>Buscando por "{{ filter }}"</h3>
+        </div>
+        <div class="cards">
+          {% for receita in params %}
+            <div class="conteudo-receita" id="{{ receita.id }}">
+              <div class="id-da-receita">
+                <div class="card-image">
+                  <img src="{{ receita.path }}" alt="Imagem da receita"></div>
+                  <div class="card-data">
+                    <p class="names">{{ receita.title }}</p>
+                    <p class="autor">por {{ receita.chef_name }}</p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endblock %}

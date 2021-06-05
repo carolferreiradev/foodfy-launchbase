@@ -1,0 +1,73 @@
+{% extends "./layout.njk" %}
+  {% block head %}
+<div class="container">
+
+    <header>
+      
+      <a href="/">
+        <img src="/image/logo.png" alt="" class="image">
+      </a>
+
+      <div class="links">
+        <a href="/about">Sobre</a>
+        <a href="/recipes">Receitas</a>
+        <a href="/chefs">Chefs</a>
+      </div>
+
+      <form action="/" method="get">
+        <input type="text" name="filter" placeholder="Buscar uma receita">
+          <button type="submit">Buscar</button>
+      </form>
+
+      <div class="login">
+        <a href="/login">Login</a>
+      </div>
+
+    </header>
+</div>
+  {% endblock %}
+
+      {% block conteudo %}
+      <div class="container">
+          <div class="slider">
+              <div class="words">
+                <h2>As melhores receitas</h2>
+                <p>Aprenda a construir os melhores pratos <br/> com receitas criadas por profissionais<br/> do mundo inteiro.</p>
+              </div>
+
+              <div class="mascote">
+                <img src="/image/chef.png" alt=""></div>
+              </div>
+          </div>
+        <div class="container">
+          <div class="moreAcess">
+            <h3>Mais acessadas</h3>
+
+            <div class="cards">
+              {%if recipes.length >= 1%}
+                  {% for receita in recipes %}
+              
+                <div class="conteudo-receita" id="{{ receita.id }}">
+
+                  <div class="id-da-receita">
+
+                    <div class="card-image">
+                      <img src="{{ receita.path }}" alt="foto de {{ receita.title }}">
+                    </div>
+
+                    <div class="card-data">
+                      <p class="names">{{ receita.title }}</p>
+                      <p class="autor">por {{ receita.chef_name }}</p>
+                    </div>
+
+                  </div>
+
+                </div>
+               
+              {% endfor %}
+              {%endif%}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endblock %}

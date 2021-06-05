@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/admin.css"> 
+    <link rel="stylesheet" href="/styles/users.css">
+    <link rel="stylesheet" href="/styles/messages.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Foodfy</title>
+  </head>
+  <body>
+    {% include 'messages/index.njk' %}
+    {% block head %}
+      <header>
+        <div class="container">
+          <nav>
+            <div class="menu">
+              <li><a href="/admin/recipes"><img class="logo" src="/image/logo_white.png" alt="Logo"></a></li>
+              <li><a href="/admin/recipes">RECEITAS</a></li>
+              <li><a href="/admin/chefs">CHEFS</a></li>
+              <li><a href="#">USUÁRIOS</a>
+                <ul class="users">
+                  <li><a href="/admin/users/profile">Meu Perfil</a></li>
+                  <li><a href="/admin/users">Lista de usuários</a></li>
+                  <li><a href="/admin/users/new">Novo usuário</a></li>
+                </ul>
+              </li>
+              <li>
+                <form action="/logout" method="POST">
+                  <button class="logout" type="submit">Sair</button>
+                </form>
+              </li>
+            </div>
+          </nav>
+        </div>
+      </header>
+    {% endblock %}
+
+    {% block conteudo %}{% endblock %}
+    {% block scripts %}
+      <script src="/scripts.js"></script>
+    {% endblock scripts %}
+  </body>
+</html>

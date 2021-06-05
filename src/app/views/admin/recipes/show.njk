@@ -1,0 +1,51 @@
+{% extends '../layout.njk' %}
+{% block conteudo %}
+  <div class="container">
+    <div class="titles-header">
+      <h3>Receita: {{ recipe.title }}</h3>
+      <div class="buttons">
+      {% if user == 1 %}
+        <a href="/admin/recipes/{{ recipe.id }}/edit">Editar receita</a>
+      {% endif %}
+      </div>
+    </div>
+     
+      <div class="gallery">
+        <div class="highlight">
+          {% if not files[0] %}
+            <img src="http://placehold.it/500x500?text=RECEITA SEM FOTO">
+            {% else %}
+              <img src="{{ files[0].src }}" alt="{{ files[0].name }}">
+              {% endif %}
+            </div>
+            <div class="gallery-preview">
+              {% for image in files %}
+                <img src="{{ image.src }}" alt="{{ image.name }}" {% if loop.index0 == 0 %} class="active" {% endif %} onclick="ImageGallery.setImage(event)">
+                {% endfor %}
+              </div>
+            </div>
+            <div class="titles-recipe">
+              <h1>{{ recipe.title }}</h1>
+              <p>por {{ recipe.chefs_name }}</p>
+            </div>
+            <div class="recipe-content">
+              <h3>Ingredientes</h3>
+              <ul>
+                {% for ingrediente in recipe.ingredients %}
+                  <li>{{ ingrediente }}</li>
+                {% endfor %}
+              </ul>
+              <h3>Modo de preparo</h3>
+              <ul>
+                {% for preparation in recipe.preparation %}
+                  <li>{{ preparation }}</li>
+                {% endfor %}
+              </ul>
+              <h3>Informações adicionais</h3>
+              <p>{{ recipe.information }}</p>
+            </div>
+          </div>
+        {% endblock conteudo %}
+        {% block scripts %}
+          <script src="/uploadImages.js"></script>
+        {% endblock scripts %}

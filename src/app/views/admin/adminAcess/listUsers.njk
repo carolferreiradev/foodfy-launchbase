@@ -1,0 +1,44 @@
+{% extends '../layout.njk'%}
+
+{%block conteudo%}
+<div class="container">
+
+  <div class="titles-header">
+    <h3>Usuários</h3>
+    <div class="buttons">
+      <a class="new-user" href="/admin/users/new">Novo</a>
+    </div>
+  </div>
+       <div class="content-users">
+          {% for user in users %}
+        <div class="users">
+          <div class="data-user">
+            <p class="title">{{user.name}}</p>
+            <p class="email">{{user.email}}</p>
+          </div>
+
+          <div class="links-user">
+            <a href="/admin/users/{{user.id}}/edit">Editar</a>
+            <form action="/admin/users?_method=DELETE" method="POST" id="{{user.email}}">
+              <button 
+                onclick="deleteData(event, '{{user.email}}')"
+                class="deletar" 
+                type="submit" 
+                {% if user.id === userLogged %}
+                  disabled
+                  title="Não é possível remover sua própria conta."
+                {% endif %}
+              >
+                Remover
+              </button>
+              <input type="hidden" name="id" value="{{user.id}}">
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+       </div>
+
+</div>
+{% include '../scripts.njk'%}
+<div class="footer"></div>
+{%endblock%}

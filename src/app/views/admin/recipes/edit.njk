@@ -1,0 +1,165 @@
+{% extends '../layout.njk' %}
+{% block conteudo %}
+  <div class="container">
+
+    <div class="titles-header">
+      <h3>Editando receita</h3>
+      <div class="buttons">
+        
+        <form id='form-delete' action="/admin/recipes?_method=DELETE" method="post">
+            <button class="delete" type="submit">Deletar</button>
+            <input type="hidden" name="id" value="{{ recipe.id }}"/>
+        </form>
+
+        <form action="/admin/recipes?_method=PUT" method="POST" enctype="multipart/form-data">
+          <button 
+                onclick="verificaValue('.inputIngrediente', 'populaIngredients');
+                         verificaValue('.inputPreparation', 'populaPreparation');" 
+                class="save" 
+                type="submit"
+          >Salvar receita</button>
+        <input type="hidden" name="id" value="{{ recipe.id }}"/>
+      </div>
+      
+    </div>  
+
+    <div class="create-recipe">
+
+          <div class="item-form">
+            <h5>Chef</h5>
+            <select name="chef_id">
+              {% for chef in chefOptions %}
+                <option 
+                  value="{{ chef.id }}" 
+                  {% if recipe.chef_id == chef.id %} selected="selected" {% endif %}
+                >
+                  {{ chef.name }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="item-form">
+            <h5>Imagem da receita</h5>
+
+            <div class="photos-master">
+
+              <div class="images-upload">
+                <input
+                  id="photos-input"
+                  type="file"
+                  name="photos"
+                  multiple="multiple"
+                  accept="image/*"
+                  onchange="PhotosUpload.handleFileInput(event)"/>
+                <i class="material-icons">add</i>
+              </div>
+
+              <div class="images-preview">
+                {% if files %}
+                  {% for image in files %}
+                    <div class="photo" id="{{ image.id }}">
+                      <img src="{{ image.src }}" alt="{{ image.name }}"/>
+                        <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">close</i>
+                    </div>
+                    <input type="hidden" name="idRecipeFile" value="{{ image.id }}"/>
+                  {% endfor %}
+                  <input type="hidden" name="removed_file"/>
+                {% endif %}
+              </div>
+
+            </div>
+            
+            <span>Selecione até 5 imagens</span>
+
+          </div>
+
+          <div class="item-form">
+
+            <h5>Nome da Receita</h5>
+              <input type="text" name="title" value="{{ recipe.title }}" required="required"/>
+            </div>
+
+             <div class="item-form">
+    <h5>Ingredientes</h5>
+
+    {% for ingrediente in recipe.ingredients %}
+      <input
+        class="inputIngrediente"
+        type="text" 
+        placeholder="Ingredientes" 
+        value="{{ ingrediente }}" 
+      />
+    {% endfor %}
+
+    <div id="add-ingredient">
+        <div class="ingredient">
+          <input 
+            class="inputIngrediente"
+            type="text" 
+            value="" 
+            placeholder="Ingredientes"
+          />
+        </div>
+    </div>
+
+    <input 
+            class="inputIngrediente"
+            id="populaIngredients"
+            type="hidden" 
+            name="ingredients[]" 
+            value="" 
+            placeholder="Ingredientes"
+        />
+
+    <p onclick="addInput('add-ingredient', 'ingredient', 'Ingredientes')">Adicionar um novo Ingrediente</p>
+  </div>
+
+            <div class="item-form">
+    <h5>Modo de preparo</h5>
+
+    {% for preparo in recipe.preparation %}
+      <input 
+        class="inputPreparation"
+        type="text" 
+        placeholder="Modo de preparo" 
+        value="{{ preparo }}" 
+      />
+    {% endfor %}
+    <div id="add-preparation">
+      <div class="preparation">
+        <input 
+            class="inputPreparation"
+            type="text" 
+            value="" 
+            placeholder="Modo de preparo"
+        />
+      </div>
+    </div>
+
+    <input
+          id="populaPreparation" 
+          name="preparation[]" 
+          type="hidden" 
+          value="" 
+          placeholder="Modo de preparo"
+        />
+
+    <p onclick="addInput('add-preparation', 'preparation', 'Modo de preparo')">Adicionar um novo passo</p>
+  </div>
+
+            <div class="item-form">
+              <h5>Informações adicionais</h5>
+              <textarea 
+                name="information" 
+                cols="30" 
+                rows="10"
+              >
+                {{ recipe.information }}
+              </textarea>
+            </div>
+        </form>
+    </div>
+</div>
+    {% include '../scripts.njk' %}
+  {% endblock conteudo %}

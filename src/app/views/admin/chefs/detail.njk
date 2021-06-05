@@ -1,0 +1,45 @@
+{% extends '../layout.njk'%}
+
+{% block conteudo %}
+
+  <div class="container">
+
+    <div class="titles-header">
+        <h3>Chef: {{chef.name}}</h3>
+      <div class="buttons">
+        {% if user.is_admin===true %}
+          <a class="new-receita" href="/admin/chefs/{{chef.id}}/edit">Editar Chef</a>
+        {% endif %}
+      </div>
+    </div>
+
+
+    <div class="chef-detail">
+      <img src="{{chef.path}}" alt="Avatar Chef {{chef.name}}">
+      <h1>{{chef.name}}</h1>
+      <p>{{total}} receita(s)</p>
+    </div>
+
+    <h3 class="title">Receitas</h3>
+      <div class="recipes-chef">
+        {% for recipe in recipes %}
+          
+          <div class="recipe">
+            <div class="recipe-image">
+              <img src="{{recipe.path}}" alt="Imagem {{recipe.title}}">
+            </div>
+
+            <div class="recipe-items">
+              <h4>{{recipe.title}}</h4>
+              <p>por {{chef.name}}</p>
+              <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+            </div>
+          </div>
+
+        {% endfor %}
+      </div>
+
+  </div>
+</div>
+
+{% endblock conteudo %}

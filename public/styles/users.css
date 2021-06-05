@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.deletar:disabled{
+  color: #777!important;
+  cursor: auto !important;
+}
+button:disabled{
+  background-color: #777 !important;
+  cursor: auto;
+}
+
+
+h1 {
+  font-size: 24px;
+}
+
+.header-title-button, .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.form-field, .field {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.fields input {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 12px;
+  margin: 4px 0;
+  outline: none;
+  border: 1px solid #cccccc;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.fields {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.header-title-button button, .header a, .buttons button {
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  width: 7rem;
+  background-color: #6558C3;
+  padding: 12px;
+  border-radius: 4px;
+  color: white;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 1px;
+}
+
+.header-title-button button:hover, .header a:hover, .buttons button:first-child:hover {
+  background-color: #322688;
+}
+
+.grid-users {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 4rem;
+}
+
+.users .title {
+  font-weight: 500;
+  color: rgb(37, 37, 37);
+  margin-bottom: 0.5rem;
+}
+
+.users .email {
+  color: #636363;
+  font-size: 14px;
+  margin-bottom: 1rem;
+}
+
+.links-user {
+  display: flex;
+}
+
+.links-user a:first-child {
+  color: #4c3ad4;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 10%;
+}
+
+.links-user .deletar {
+  color: #d33737;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  width: 0;
+  background-color: white;
+  padding: 0;
+  border-radius: 0;
+  letter-spacing: 0px;
+  cursor: pointer;
+}
+
+.titles {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkbox input {
+  width: auto;
+  margin-right: 0.4rem;
+}
+
+.form-put-delete-user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.forms {
+  display: flex;
+}
+
+.forms .form-delete button {
+  margin-right: 2rem;
+  background-color: #d33737;
+  font-weight: 700;
+  transition: 400ms ease-in-out;
+}
+
+.forms .form-delete button:hover {
+  background-color: #8a0000;
+}
+
+.forms .form-edit button {
+  font-weight: 700;
+  transition: 400ms ease-in-out;
+}
+
+.forms .form-edit button:hover {
+  background-color: #291f7a;
+}
+
+.footer {
+  margin-bottom: 4rem;
+}

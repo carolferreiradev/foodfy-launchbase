@@ -1,0 +1,164 @@
+<div class="create-recipe">
+
+  <div class="item-form">
+
+    <h5>Imagem da receita</h5>
+
+    <div class="photos-master">
+
+      <div class="images-upload">
+        <input
+          id="photos-input"
+          type="file"
+          name="photos"
+          multiple
+          accept="image/*"
+          onchange="PhotosUpload.handleFileInput(event)"/>
+
+        <i class="material-icons">add</i>
+
+      </div>
+
+      <div class="images-preview"></div>
+
+    </div>
+
+    <span>Selecione até 5 imagens</span>
+
+  </div>
+    
+  <div class="item-form">
+
+      <h5>Chef</h5>
+
+      <select name="chef_id">
+        {% for chef in chefOptions %}
+          <option 
+            value="{{ chef.id }}" 
+            {% if error %}
+              {% if user.chef_id == chef.id %} 
+                selected="selected"
+              {% endif %}
+            {% endif %}
+            {% if recipe.chef_id == chef.id %} 
+              selected="selected"
+            {% endif %}
+            >
+            {{ chef.name }}
+          </option>
+        {% endfor %}
+      </select>
+
+  </div>
+
+  <div class="item-form">
+    <h5>Nome da Receita</h5>
+    <input 
+      type="text" 
+      name="title"
+      {% if error %}
+      value="{{user.title}}"
+      {% else %}}
+      value="{{ recipe.title }}"
+      {% endif %} 
+      required="required">
+  </div>
+      
+  <div class="item-form">
+    <h5>Ingredientes</h5>
+
+    {% if error %}
+      {% for ingrediente in user.ingredients %}
+       <input 
+        type="text"
+        placeholder="Ingredientes"
+        value="{{ ingrediente }}"
+        />
+      {% endfor %}
+    {% else %}
+        {% for ingrediente in recipe.ingredients %}
+          <input 
+            class="inputIngrediente"
+            type="text" 
+            placeholder="Ingredientes"
+            value="{{ ingrediente }}" 
+            required="required"
+          />
+        {% endfor %}
+    {%endif%}
+    
+    <div id="add-ingredient">
+       <div class="ingredient">
+          <input 
+            class="inputIngrediente"
+            type="text" 
+            value="" 
+            placeholder="Ingredientes"
+        />
+       </div>
+    </div>
+
+    <input 
+            class="inputIngrediente"
+            id="populaIngredients"
+            type="hidden" 
+            name="ingredients[]" 
+            value="" 
+            placeholder="Ingredientes"
+        />
+   
+    <p onclick="addInput('add-ingredient', 'ingredient', 'Ingredientes')">Adicionar um novo Ingrediente</p>
+  </div>
+
+  <div class="item-form">
+    <h5>Modo de preparo</h5>
+
+    {% if error %}
+      {% for preparo in user.preparation %}
+       <input 
+        class="inputPreparation"
+        type="text" 
+        placeholder="Modo de preparo" 
+        value="{{ preparo }}" 
+        required="required"
+        />
+      {% endfor %}
+    {% else %}
+        {% for preparo in recipe.preparation %}
+          <input
+          class="inputPreparation"
+          type="text" 
+        placeholder="Modo de preparo" 
+        value="{{ preparo }}" 
+        required="required"
+          />
+        {% endfor %}
+    {%endif%}
+
+    <div id="add-preparation">
+      <div class="preparation">
+        <input 
+          class="inputPreparation"
+          type="text" 
+          value="" 
+          placeholder="Modo de preparo"
+        />
+      </div>
+    </div>
+
+        <input
+          id="populaPreparation" 
+          name="preparation[]" 
+          type="hidden" 
+          value="" 
+          placeholder="Modo de preparo"
+        />
+    <p onclick="addInput('add-preparation', 'preparation', 'Modo de preparo')">Adicionar um novo passo</p>
+  </div>
+
+  <div class="item-form">
+    <h5>Informações adicionais</h5>
+    <textarea name="information" cols="30" rows="10">{{ recipe.information }}</textarea>
+  </div>
+
+</div>

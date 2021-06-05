@@ -1,0 +1,35 @@
+{% extends '../layout.njk'%}
+{%block conteudo%}
+<div class="container">
+  <form class="form-user" method="POST" action="/admin/users">
+  <div class="titles-header">
+    <h3>Criar Usuário</h3>
+    <div class="buttons">
+      <button class="btn-primary" type="submit">Salvar</button>
+      <button class="btn-secondary">Cancelar</button>
+    </div>
+  </div>
+  <div class="field">
+
+    <div class="fields">
+      Nome
+      <input type="text" name="name" placeholder="Digite o nome completo">
+    </div>
+
+    <div class="fields">
+      Email
+      <input type="email" name="email" placeholder="Digite o email">
+    </div>
+
+    <div class="fields checkbox">
+      <input type="checkbox" name="is_admin">
+      Administrador
+    </div>
+
+  </div>
+</form>
+{%endblock%}
+
+</div>
+
+

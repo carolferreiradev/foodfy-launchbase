@@ -1,0 +1,65 @@
+{% extends '../layout.njk'%}
+
+{% block conteudo %}
+  <div class="container">
+
+    <div class="titles-header">
+      <h3>Editando chef</h3>
+      <div class="buttons">
+        
+        <form id='form-delete' action="/admin/chefs?_method=DELETE" method="POST">
+          <input type="hidden" name="id" value="{{chef.id}}">
+          <button class="delete" type="submit">Deletar</button>
+        </form>
+
+        <form action="/admin/chefs?_method=PUT" method="post" enctype="multipart/form-data">
+          <button class="save" type="submit">Salvar Chef</button>
+          <input type="hidden" name="id" value="{{chef.id}}">
+
+      </div>
+      
+    </div>
+
+  <div class="create-chef">
+
+    <div class="item-form">
+        <h5>Nome</h5>
+        <input type="text" name="name" required="required" value="{{chef.name}}">
+    </div>
+
+    <div class="item-form">
+      <h5>Avatar</h5>
+      <div class="imagescontainer">
+        <div class="images-upload images-chef-div">
+          <input id="photos-input" type="file" name="photos" multiple="multiple" accept="image/*" onchange="PhotosUpload.handleFileInput(event)">
+          <p class="chefsImage">Enviar Avatar</p>
+        </div>
+
+        <div class="chefsImagePreview">
+          {% if files %}
+            {% for image in files %}
+              <div class="photo" id="{{image.id}}">
+                <img src="{{image.src}}" alt="{{image.name}}">
+                <i class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">close</i>
+              </div>
+            
+              <input type="hidden" name="idRecipeFile" value="{{image.id}}">
+            {% endfor %}
+            <input type="hidden" name="removed_file">
+          {% endif %}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  </form>
+</div>
+
+  {% include '../scripts.njk'%}
+
+{% block scripts %}
+  <script src="/uploadImages.js"></script>
+{% endblock scripts %}
+
+{% endblock conteudo %}

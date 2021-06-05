@@ -1,0 +1,33 @@
+{% extends '../layout.njk' %}
+{% block conteudo %}
+<div class="container">
+  <div class="titles-header">
+      <h3>Bem vindo(a) {{  user.name }}</h3>
+      <div class="buttons">
+        <form class="form-user" action="/admin/users/profile?_method=PUT" method="post">
+           <button type="submit">Salvar</button>
+          <input class="save" type="hidden" name="id" value="{{ user.id }}"/>
+      </div>
+    </div>
+    <div class="field">
+      <div class="fields">
+        Nome
+        <input type="text" name="name" value="{{ user.name }}">
+      </div>
+      <div class="fields">
+        Email
+        <input 
+          type="email" 
+          name="email" 
+          value="{{ user.email }}" 
+          readonly="“true”" 
+          title="Não é permitido alterar o email cadastrado">
+      </div>
+      <div class="fields">
+        Senha
+        <input type="password" name="password" placeholder="Digite a senha">
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

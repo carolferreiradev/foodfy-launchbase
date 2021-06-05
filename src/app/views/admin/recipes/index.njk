@@ -1,0 +1,27 @@
+{% extends '../layout.njk' %}
+{% block conteudo %}
+  <div class="container">
+    <div class="content-recipes">
+      <div class="titles-header">
+        <h3>Gerenciar Receitas</h3>
+       <div class="buttons">
+          <a class="new-receita" href="/admin/recipes/create">Nova Receita</a>
+       </div>
+      </div>
+      <div class="recipes">
+        {% for recipe in recipes %}
+          <div class="recipe">
+            <div id="recipe-image" class="recipe-image">
+                <img class="image-index" src="{{  recipe.array_to_string[0] }}" alt="Foto da receita {{ recipe.title }}">
+          </div>
+          <div class="recipe-items">
+            <h4>{{ recipe.title }}</h4>
+            <h5>por {{ recipe.chefs_name }}</h5>
+            <a href="/admin/recipes/{{ recipe.id }}">Visualizar</a>
+          </div>
+          </div>
+      {% endfor %}
+    </div>
+    </div>
+  </div>
+{% endblock conteudo %}
