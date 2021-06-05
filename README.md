@@ -14,10 +14,10 @@ Sistema composto por duas seções:
   *Cadastrar, Editar e Excluir usuários*
   
 
-![enter image description here](https://github.com/anacarolinaferreira/foodfy/blob/master/foodyall.PNG) 
+![enter image description here](https://github.com/carolferreiradev/foodfy-launchbase/blob/master/foodyall.PNG) 
 
 
-![enter image description here](https://github.com/anacarolinaferreira/foodfy/blob/master/foodyadm.PNG)
+![enter image description here](https://github.com/carolferreiradev/foodfy-launchbase/blob/master/foodyadm.PNG)
 
 Foram utilizadas as seguintes tecnologias:
   *NUNJUCKS*
